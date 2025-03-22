@@ -1,0 +1,36 @@
+{
+  "prediction": {
+    "output_format": "json",
+    "confidence_threshold": 0.65,
+    "uncertainty_estimation": {
+      "method": "monte_carlo_dropout",
+      "num_samples": 100
+    },
+    "ensemble_prediction": true,
+    "feature_importance": {
+      "enabled": true,
+      "method": "shap",
+      "num_features_to_show": 5
+    }
+  },
+  "output": {
+    "save_path": "/home/ubuntu/neural_sports_predictor/data/predictions",
+    "file_format": "json",
+    "daily_filename_template": "predictions_{date}_{sport}.json",
+    "archive": true,
+    "archive_days": 90
+  },
+  "logging": {
+    "level": "INFO",
+    "file_path": "/home/ubuntu/neural_sports_predictor/logs/prediction.log",
+    "performance_tracking": true
+  },
+  "notification": {
+    "enabled": false,
+    "method": "email",
+    "threshold": {
+      "high_confidence": 0.85,
+      "low_confidence": 0.55
+    }
+  }
+}

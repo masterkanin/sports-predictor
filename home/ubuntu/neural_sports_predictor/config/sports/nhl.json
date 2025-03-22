@@ -1,0 +1,69 @@
+{
+  "sport_name": "NHL",
+  "sport_type": "hockey",
+  "is_indoor": true,
+  "stats": [
+    {
+      "name": "Goals",
+      "abbreviation": "G",
+      "type": "numeric",
+      "description": "Total goals scored by player"
+    },
+    {
+      "name": "Assists",
+      "abbreviation": "A",
+      "type": "numeric",
+      "description": "Total assists by player"
+    },
+    {
+      "name": "Points",
+      "abbreviation": "PTS",
+      "type": "numeric",
+      "description": "Total points (goals + assists) by player"
+    },
+    {
+      "name": "Shots on Goal",
+      "abbreviation": "SOG",
+      "type": "numeric",
+      "description": "Total shots on goal by player"
+    },
+    {
+      "name": "Blocks",
+      "abbreviation": "BLK",
+      "type": "numeric",
+      "description": "Total blocks by player"
+    },
+    {
+      "name": "Hits",
+      "abbreviation": "HIT",
+      "type": "numeric",
+      "description": "Total hits by player"
+    },
+    {
+      "name": "Power Play Points",
+      "abbreviation": "PPP",
+      "type": "numeric",
+      "description": "Total power play points by player"
+    }
+  ],
+  "data_sources": {
+    "player_stats": "https://api.sportsdata.io/v3/nhl/stats/json/PlayerGameStatsByDate/{date}",
+    "team_stats": "https://api.sportsdata.io/v3/nhl/scores/json/TeamGameStatsByDate/{date}",
+    "schedules": "https://api.sportsdata.io/v3/nhl/scores/json/Games/{season}",
+    "injuries": "https://api.sportsdata.io/v3/nhl/projections/json/InjuredPlayers",
+    "odds": "https://api.sportsdata.io/v3/nhl/odds/json/GameOddsByDate/{date}"
+  },
+  "feature_engineering": {
+    "rolling_window_sizes": [3, 5, 10],
+    "opponent_strength_metric": "defensive_rating",
+    "home_away_split": true,
+    "rest_days_impact": true,
+    "special_teams_impact": true
+  },
+  "model_parameters": {
+    "sequence_length": 10,
+    "embedding_dim": 32,
+    "lstm_units": 64,
+    "dropout_rate": 0.2
+  }
+}

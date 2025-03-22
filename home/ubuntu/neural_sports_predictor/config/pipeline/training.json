@@ -1,0 +1,42 @@
+{
+  "training": {
+    "batch_size": 64,
+    "epochs": 100,
+    "early_stopping_patience": 10,
+    "learning_rate": 0.001,
+    "validation_split": 0.2,
+    "test_split": 0.1,
+    "loss_weights": {
+      "regression": 0.5,
+      "classification": 0.5
+    },
+    "optimizer": "adam",
+    "regression_loss": "mean_squared_error",
+    "classification_loss": "binary_crossentropy"
+  },
+  "hyperparameter_tuning": {
+    "enabled": true,
+    "method": "bayesian",
+    "max_trials": 50,
+    "concurrent_trials": 4,
+    "parameters": {
+      "learning_rate": [0.0001, 0.001, 0.01],
+      "batch_size": [32, 64, 128],
+      "dropout_rate": [0.1, 0.2, 0.3, 0.4, 0.5],
+      "lstm_units": [32, 64, 128],
+      "embedding_dim": [16, 32, 64]
+    }
+  },
+  "ensemble": {
+    "enabled": true,
+    "models": ["neural_network", "xgboost"],
+    "weights": [0.7, 0.3],
+    "stacking": false
+  },
+  "logging": {
+    "level": "INFO",
+    "file_path": "/home/ubuntu/neural_sports_predictor/logs/training.log",
+    "tensorboard": true,
+    "model_checkpoints": true
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "sport_name": "Soccer",
+  "sport_type": "soccer",
+  "is_indoor": false,
+  "weather_relevant": true,
+  "stats": [
+    {
+      "name": "Goals",
+      "abbreviation": "G",
+      "type": "numeric",
+      "description": "Total goals scored by player"
+    },
+    {
+      "name": "Assists",
+      "abbreviation": "A",
+      "type": "numeric",
+      "description": "Total assists by player"
+    },
+    {
+      "name": "Shots",
+      "abbreviation": "SH",
+      "type": "numeric",
+      "description": "Total shots by player"
+    },
+    {
+      "name": "Shots on Target",
+      "abbreviation": "SOT",
+      "type": "numeric",
+      "description": "Total shots on target by player"
+    },
+    {
+      "name": "Passes",
+      "abbreviation": "P",
+      "type": "numeric",
+      "description": "Total passes by player"
+    },
+    {
+      "name": "Key Passes",
+      "abbreviation": "KP",
+      "type": "numeric",
+      "description": "Total key passes by player"
+    },
+    {
+      "name": "Goal Contributions",
+      "abbreviation": "G+A",
+      "type": "numeric",
+      "description": "Sum of goals and assists"
+    }
+  ],
+  "data_sources": {
+    "player_stats": "https://api.sportsdata.io/v3/soccer/stats/json/PlayerGameStatsByDate/{date}",
+    "team_stats": "https://api.sportsdata.io/v3/soccer/scores/json/TeamGameStatsByDate/{date}",
+    "schedules": "https://api.sportsdata.io/v3/soccer/scores/json/Competitions",
+    "injuries": "https://api.sportsdata.io/v3/soccer/projections/json/InjuredPlayers",
+    "weather": "https://api.sportsdata.io/v3/soccer/scores/json/GameWeatherByDate/{date}",
+    "odds": "https://api.sportsdata.io/v3/soccer/odds/json/GameOddsByDate/{date}"
+  },
+  "feature_engineering": {
+    "rolling_window_sizes": [3, 5, 10],
+    "opponent_strength_metric": "defensive_rating",
+    "home_away_split": true,
+    "weather_impact": true,
+    "competition_importance": true
+  },
+  "model_parameters": {
+    "sequence_length": 10,
+    "embedding_dim": 32,
+    "lstm_units": 64,
+    "dropout_rate": 0.2
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "sport_name": "NFL",
+  "sport_type": "football",
+  "is_indoor": false,
+  "weather_relevant": true,
+  "stats": [
+    {
+      "name": "Passing Yards",
+      "abbreviation": "PASS_YDS",
+      "type": "numeric",
+      "description": "Total passing yards by player"
+    },
+    {
+      "name": "Passing Touchdowns",
+      "abbreviation": "PASS_TD",
+      "type": "numeric",
+      "description": "Total passing touchdowns by player"
+    },
+    {
+      "name": "Rushing Yards",
+      "abbreviation": "RUSH_YDS",
+      "type": "numeric",
+      "description": "Total rushing yards by player"
+    },
+    {
+      "name": "Rushing Touchdowns",
+      "abbreviation": "RUSH_TD",
+      "type": "numeric",
+      "description": "Total rushing touchdowns by player"
+    },
+    {
+      "name": "Receiving Yards",
+      "abbreviation": "REC_YDS",
+      "type": "numeric",
+      "description": "Total receiving yards by player"
+    },
+    {
+      "name": "Receptions",
+      "abbreviation": "REC",
+      "type": "numeric",
+      "description": "Total receptions by player"
+    },
+    {
+      "name": "Receiving Touchdowns",
+      "abbreviation": "REC_TD",
+      "type": "numeric",
+      "description": "Total receiving touchdowns by player"
+    }
+  ],
+  "data_sources": {
+    "player_stats": "https://api.sportsdata.io/v3/nfl/stats/json/PlayerGameStatsByWeek/{season}/{week}",
+    "team_stats": "https://api.sportsdata.io/v3/nfl/stats/json/TeamGameStatsByWeek/{season}/{week}",
+    "schedules": "https://api.sportsdata.io/v3/nfl/scores/json/Schedules/{season}",
+    "injuries": "https://api.sportsdata.io/v3/nfl/scores/json/Injuries/{season}",
+    "weather": "https://api.sportsdata.io/v3/nfl/scores/json/GameWeatherByWeek/{season}/{week}",
+    "odds": "https://api.sportsdata.io/v3/nfl/odds/json/GameOddsByWeek/{season}/{week}"
+  },
+  "feature_engineering": {
+    "rolling_window_sizes": [3, 5, 10],
+    "opponent_strength_metric": "defensive_efficiency",
+    "home_away_split": true,
+    "rest_days_impact": true,
+    "weather_impact": true
+  },
+  "model_parameters": {
+    "sequence_length": 8,
+    "embedding_dim": 32,
+    "lstm_units": 64,
+    "dropout_rate": 0.2
+  }
+}

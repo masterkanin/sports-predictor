@@ -1,0 +1,69 @@
+{
+  "sport_name": "NBA",
+  "sport_type": "basketball",
+  "is_indoor": true,
+  "stats": [
+    {
+      "name": "Points",
+      "abbreviation": "PTS",
+      "type": "numeric",
+      "description": "Total points scored by player"
+    },
+    {
+      "name": "Rebounds",
+      "abbreviation": "REB",
+      "type": "numeric",
+      "description": "Total rebounds (offensive + defensive) by player"
+    },
+    {
+      "name": "Assists",
+      "abbreviation": "AST",
+      "type": "numeric",
+      "description": "Total assists by player"
+    },
+    {
+      "name": "Steals",
+      "abbreviation": "STL",
+      "type": "numeric",
+      "description": "Total steals by player"
+    },
+    {
+      "name": "Blocks",
+      "abbreviation": "BLK",
+      "type": "numeric",
+      "description": "Total blocks by player"
+    },
+    {
+      "name": "Three Pointers Made",
+      "abbreviation": "3PM",
+      "type": "numeric",
+      "description": "Total three-point field goals made by player"
+    },
+    {
+      "name": "Points + Rebounds + Assists",
+      "abbreviation": "PRA",
+      "type": "numeric",
+      "description": "Sum of points, rebounds, and assists"
+    }
+  ],
+  "data_sources": {
+    "player_stats": "https://api.sportsdata.io/v3/nba/stats/json/PlayerGameStatsByDate/{date}",
+    "team_stats": "https://api.sportsdata.io/v3/nba/scores/json/TeamGameStatsByDate/{date}",
+    "schedules": "https://api.sportsdata.io/v3/nba/scores/json/Games/{season}",
+    "injuries": "https://api.sportsdata.io/v3/nba/scores/json/Injuries",
+    "odds": "https://api.sportsdata.io/v3/nba/odds/json/GameOddsByDate/{date}"
+  },
+  "feature_engineering": {
+    "rolling_window_sizes": [3, 5, 10],
+    "opponent_strength_metric": "defensive_rating",
+    "home_away_split": true,
+    "rest_days_impact": true,
+    "back_to_back_impact": true
+  },
+  "model_parameters": {
+    "sequence_length": 10,
+    "embedding_dim": 32,
+    "lstm_units": 64,
+    "dropout_rate": 0.2
+  }
+}

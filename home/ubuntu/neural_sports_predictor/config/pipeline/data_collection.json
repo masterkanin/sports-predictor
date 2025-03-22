@@ -1,0 +1,27 @@
+{
+  "data_collection": {
+    "update_frequency": "daily",
+    "api_request_delay": 1,
+    "max_retries": 3,
+    "timeout": 30,
+    "cache_expiry": 86400,
+    "historical_days": 365
+  },
+  "storage": {
+    "format": "parquet",
+    "compression": "snappy",
+    "database_type": "sqlite",
+    "database_path": "/home/ubuntu/neural_sports_predictor/data/sports_data.db"
+  },
+  "logging": {
+    "level": "INFO",
+    "file_path": "/home/ubuntu/neural_sports_predictor/logs/data_collection.log",
+    "rotation": "daily",
+    "retention": 30
+  },
+  "error_handling": {
+    "notify_on_failure": true,
+    "backup_sources_enabled": true,
+    "missing_data_strategy": "interpolate"
+  }
+}

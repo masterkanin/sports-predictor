@@ -1,0 +1,71 @@
+{
+  "sport_name": "MLB",
+  "sport_type": "baseball",
+  "is_indoor": false,
+  "weather_relevant": true,
+  "stats": [
+    {
+      "name": "Hits",
+      "abbreviation": "H",
+      "type": "numeric",
+      "description": "Total hits by player"
+    },
+    {
+      "name": "Home Runs",
+      "abbreviation": "HR",
+      "type": "numeric",
+      "description": "Total home runs by player"
+    },
+    {
+      "name": "Runs Batted In",
+      "abbreviation": "RBI",
+      "type": "numeric",
+      "description": "Total runs batted in by player"
+    },
+    {
+      "name": "Runs",
+      "abbreviation": "R",
+      "type": "numeric",
+      "description": "Total runs scored by player"
+    },
+    {
+      "name": "Stolen Bases",
+      "abbreviation": "SB",
+      "type": "numeric",
+      "description": "Total stolen bases by player"
+    },
+    {
+      "name": "Strikeouts Pitched",
+      "abbreviation": "K",
+      "type": "numeric",
+      "description": "Total strikeouts by pitcher"
+    },
+    {
+      "name": "Hits + Runs + RBI",
+      "abbreviation": "H+R+RBI",
+      "type": "numeric",
+      "description": "Sum of hits, runs, and RBIs"
+    }
+  ],
+  "data_sources": {
+    "player_stats": "https://api.sportsdata.io/v3/mlb/stats/json/PlayerGameStatsByDate/{date}",
+    "team_stats": "https://api.sportsdata.io/v3/mlb/scores/json/TeamGameStatsByDate/{date}",
+    "schedules": "https://api.sportsdata.io/v3/mlb/scores/json/Games/{season}",
+    "injuries": "https://api.sportsdata.io/v3/mlb/projections/json/InjuredPlayers",
+    "weather": "https://api.sportsdata.io/v3/mlb/scores/json/GameWeatherByDate/{date}",
+    "odds": "https://api.sportsdata.io/v3/mlb/odds/json/GameOddsByDate/{date}"
+  },
+  "feature_engineering": {
+    "rolling_window_sizes": [5, 10, 15],
+    "opponent_strength_metric": "pitching_rating",
+    "home_away_split": true,
+    "weather_impact": true,
+    "ballpark_factors": true
+  },
+  "model_parameters": {
+    "sequence_length": 15,
+    "embedding_dim": 32,
+    "lstm_units": 64,
+    "dropout_rate": 0.2
+  }
+}
