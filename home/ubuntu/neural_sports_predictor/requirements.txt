@@ -1,8 +1,7 @@
-# Common packages for ML sports prediction
 numpy
 pandas
 scikit-learn
-tensorflow or pytorch
+tensorflow
 requests
 fastapi
 uvicorn
